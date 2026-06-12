@@ -8,10 +8,24 @@
         body { font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle at top right, #1e1b4b, #0b0e14, #000000); background-attachment: fixed; color: #f8fafc; margin: 0; padding: 20px; overflow-x: hidden; min-height: 100vh; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(white, rgba(255,255,255,.05) 2px, transparent 2px); background-size: 50px 50px; pointer-events: none; z-index: -1; opacity: 0.3; }
 
+        /* بانر الاسم المتوهج والنابض - فوق يسار */
+        .top-left-name {
+            position: fixed; top: 20px; left: 20px; z-index: 1001;
+            font-size: 1.6rem; font-weight: 900; color: #fff; padding: 10px 25px; 
+            border-radius: 20px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);
+            border: 2px solid #ff7675;
+            text-shadow: 0 0 10px #ff7675, 0 0 20px #ff7675;
+            box-shadow: 0 0 15px rgba(255, 118, 117, 0.4);
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px #ff7675, 0 0 20px #ff7675; transform: scale(1); }
+            50% { box-shadow: 0 0 20px #ff7675, 0 0 40px #ff7675; transform: scale(1.05); }
+        }
+
         .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 30px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); text-align: center; }
         .login-input { width: 260px; padding: 15px; margin: 20px 0; border-radius: 50px; border: 2px solid rgba(255, 255, 255, 0.1); background: rgba(0, 0, 0, 0.3); color: #fff; text-align: center; font-size: 16px; }
         .login-btn { padding: 12px 50px; border: none; border-radius: 50px; background: linear-gradient(45deg, #ff7675, #d63031); color: white; font-weight: bold; cursor: pointer; transition: 0.4s; }
-        
         .login-sticker { font-size: 3rem; margin-bottom: 10px; animation: heartBeat 1.5s infinite; }
         @keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
@@ -36,14 +50,15 @@
         .heart { position: absolute; bottom: -10%; color: #ff7675; font-size: 40px; animation: fall linear forwards; pointer-events: none; z-index: 1; }
         @keyframes fall { to { transform: translateY(-110vh) rotate(360deg); } }
         
-        .top-left-name { position: fixed; top: 20px; left: 20px; z-index: 1001; font-size: 1.8rem; font-weight: 900; color: #fff; padding: 10px 20px; border-radius: 15px; background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(5px); }
         .audio-player-container { position: fixed; bottom: 30px; right: 30px; background: rgba(30, 41, 59, 0.8); padding: 15px; border-radius: 20px; border: 1px solid #6c5ce7; backdrop-filter: blur(10px); z-index: 9997; }
     </style>
 </head>
 <body>
 
 <div id="passwordOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0b0e14; z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <!-- الصورة التي نسيتها -->
     <img src="sticker.png" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 30px; border: 4px solid #fff;">
+    
     <div class="glass-panel">
         <div class="login-sticker">🐼💖</div>
         <h2>أدخلي كلمة المرور يا دودو ❤️</h2>
@@ -56,7 +71,6 @@
 
 <div class="top-left-name">دودو ❤️</div>
 
-<!-- النوافذ -->
 <div id="giftPopup" class="popup">
     <div style="font-size: 3rem;">🎁</div>
     <p class="message-content">احلي واحده عرفتها وعسوله وجميله وكيوت وقمر ومزه😉❤️</p>
@@ -69,7 +83,6 @@
     <button class="close-btn" onclick="hidePopup('msgPopup')">إغلاق</button>
 </div>
 
-<!-- القائمة العائمة -->
 <div class="floating-menu">
     <div class="menu-item" onclick="showPopup('giftPopup')">
         <div class="menu-icon">🎁</div>
