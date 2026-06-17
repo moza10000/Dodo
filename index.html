@@ -11,8 +11,8 @@
         /* مشغل الصوت الاحترافي */
         .audio-player-container {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 100px;
+            right: 1px;
             z-index: 9997;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
@@ -21,7 +21,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
-        audio { height: 35px; filter: invert(1) hue-rotate(180deg); }
+        audio { height: 20px; filter: invert(1) hue-rotate(180deg); }
 
         .top-left-name { position: fixed; top: 20px; left: 20px; z-index: 1001; font-size: 1.6rem; font-weight: 900; color: #fff; padding: 10px 25px; border-radius: 20px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 2px solid #ff7675; text-shadow: 0 0 10px #ff7675, 0 0 20px #ff7675; box-shadow: 0 0 15px rgba(255, 118, 117, 0.4); animation: pulse-glow 2s infinite ease-in-out; display: flex; align-items: center; gap: 10px; }
         @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 10px #ff7675, 0 0 20px #ff7675; transform: scale(1); } 50% { box-shadow: 0 0 20px #ff7675, 0 0 40px #ff7675; transform: scale(1.05); } }
@@ -80,7 +80,7 @@
         <p id="errorMsg" style="color: #ff7675; margin-top: 15px; display: none;">كلمة المرور غير صحيحة!</p>
     </div>
 </div>
-
+<audio src=""></audio>
 <div class="top-left-name">
     <img src="sticker.png" style="width: 35px; height: 35px;">
     دودو ❤️
