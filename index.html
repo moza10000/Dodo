@@ -8,6 +8,21 @@
         body { font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle at top right, #1e1b4b, #0b0e14, #000000); background-attachment: fixed; color: #f8fafc; margin: 0; padding: 20px; overflow-x: hidden; min-height: 100vh; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(white, rgba(255,255,255,.05) 2px, transparent 2px); background-size: 50px 50px; pointer-events: none; z-index: -1; opacity: 0.3; }
 
+        /* مشغل الصوت الاحترافي */
+        .audio-player-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9997;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        audio { height: 35px; filter: invert(1) hue-rotate(180deg); }
+
         .top-left-name { position: fixed; top: 20px; left: 20px; z-index: 1001; font-size: 1.6rem; font-weight: 900; color: #fff; padding: 10px 25px; border-radius: 20px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 2px solid #ff7675; text-shadow: 0 0 10px #ff7675, 0 0 20px #ff7675; box-shadow: 0 0 15px rgba(255, 118, 117, 0.4); animation: pulse-glow 2s infinite ease-in-out; display: flex; align-items: center; gap: 10px; }
         @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 10px #ff7675, 0 0 20px #ff7675; transform: scale(1); } 50% { box-shadow: 0 0 20px #ff7675, 0 0 40px #ff7675; transform: scale(1.05); } }
 
@@ -38,14 +53,16 @@
         .menu-item { cursor: pointer; text-align: center; }
         .menu-icon { font-size: 3rem; filter: drop-shadow(0 0 10px rgba(255, 118, 117, 0.5)); transition: 0.3s; }
         .glowing-name { font-size: 1.1rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #ff7675; }
+        
         .dates-container { display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap; }
         .date-card { background: rgba(255, 255, 255, 0.05); padding: 20px 30px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; backdrop-filter: blur(10px); }
         .glowing-date { font-size: 1.8rem; font-weight: 800; color: #fff; text-shadow: 0 0 10px #fff; }
+        
         .photo-frame { width: 200px; border: 3px solid rgba(255, 255, 255, 0.2); border-radius: 20px; overflow: hidden; background: rgba(255, 255, 255, 0.1); transition: 0.4s; }
         .profile-photo { width: 100%; height: 250px; object-fit: cover; }
         .featured-image-section { max-width: 600px; margin: 50px auto; padding: 20px; background: rgba(255, 255, 255, 0.03); border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.08); text-align: center; }
         .featured-image-section img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; }
-        .audio-player-container { position: fixed; bottom: 30px; right: 30px; z-index: 9997; }
+        
         .heart { position: absolute; bottom: -10%; color: #ff7675; font-size: 40px; animation: fall linear forwards; pointer-events: none; }
         @keyframes fall { to { transform: translateY(-110vh) rotate(360deg); } }
     </style>
@@ -54,7 +71,6 @@
 
 <div id="passwordOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0b0e14; z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
     <img src="sticker.png" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #ff7675; margin-bottom: 30px;">
-    
     <div class="glass-panel">
         <div style="font-size: 2.5rem; margin-bottom: 10px;">🐼💖</div>
         <h2 style="margin-top: 0;">أدخلي كلمة المرور يا دودو ❤️</h2>
@@ -72,7 +88,6 @@
 
 <div style="text-align: center; margin-top: 100px;">
     <h1>أحلى دودو في الدنيا ❤️</h1>
-    
     <p style="font-size: 1.2rem; font-weight: bold; color: #ff7675; margin-bottom: 5px;">ده بداية عمري معاكي</p>
     <div class="timer-container">
         <div class="timer-box"><span id="years" class="timer-val">0</span><span class="timer-label">سنة</span></div>
@@ -83,7 +98,6 @@
         <div class="timer-box"><span id="seconds" class="timer-val">0</span><span class="timer-label">ثانية</span></div>
     </div>
     <p style="font-size: 1rem; color: #ff7675; font-weight: bold;">هيفضل شغال طول ما احنا مع بعض ⏱️</p>
-
     <button onclick="toggleCards()" class="login-btn" style="margin-top: 20px;">اضغطي هنا لتري مفاجآت الكروت</button>
 </div>
 
@@ -109,16 +123,6 @@
     <p style="font-size: 1.3rem; font-weight: bold;">كل لحظة معاكي هي عيد، ربنا يخليكي ليا يا دودو ❤️✨</p>
 </div>
 
-<div class="featured-image-section">
-    <img src="special2_image.jpg" alt="صورة خاصة">
-    <p style="font-size: 1.3rem; font-weight: bold;"> كل لحظه في عمري بتمني تكون معاكي ❤️✨</p>
-</div>
-
-<div class="featured-image-section">
-    <img src="special3_image.jpg" alt="صورة خاصة">
-    <p style="font-size: 1.3rem; font-weight: bold;"> كل سنة واحنا مع بعض❤️✨</p>
-</div>
-
 <div class="floating-menu">
     <div class="menu-item" onclick="showPopup('giftPopup')"><div class="menu-icon">🎁</div><div class="glowing-name">هدية</div></div>
     <div class="menu-item" onclick="showPopup('msgPopup')"><div class="menu-icon">💬</div><div class="glowing-name">رسالة</div></div>
@@ -128,12 +132,12 @@
     <h2>لسه مخلصتش دوسي هنا 🔒</h2>
 </div>
 
+<div class="audio-player-container"><audio controls><source src="song.mp3" type="audio/mpeg"></audio></div>
+<div class="hearts-container"></div>
+
 <div id="giftPopup" class="popup"><div style="font-size: 3rem;">🎁</div><p style="font-size: 1.3rem; font-weight: bold;">احلي واحده عرفتها وعسوله وجميله وكيوت وقمر ومزه😉❤️</p><button class="close-btn" onclick="hidePopup('giftPopup')">إغلاق</button></div>
 <div id="msgPopup" class="popup"><h3 style="color: #ff7675;">كلمة من القلب ❤️</h3><p style="font-size: 1.3rem; font-weight: bold;">ربنا يخليكي ليا ومايحرمنيش منك ابدا يا روح قلبي ❤️✨</p><button class="close-btn" onclick="hidePopup('msgPopup')">إغلاق</button></div>
 <div id="finalPopup" class="popup"><div style="font-size: 3rem;">💖</div><p style="font-size: 1.3rem; font-weight: bold;">ربنا يخليكي ليا ومايحرمنيش منك ابدا يا❤️ روح قلبي ويارب العمر كله مع بعض </p><button class="close-btn" onclick="hidePopup('finalPopup')">إغلاق</button></div>
-
-<div class="audio-player-container"><audio controls><source src="song.mp3" type="audio/mpeg"></audio></div>
-<div class="hearts-container"></div>
 
 <script>
     function checkPassword() { if(document.getElementById('passInput').value === "19/04/2007") document.getElementById('passwordOverlay').style.display = 'none'; else document.getElementById('errorMsg').style.display = 'block'; }
@@ -145,14 +149,12 @@
         const start = new Date("2026-06-06T00:00:00");
         const now = new Date();
         const diff = now - start;
-
         const seconds = Math.floor((diff / 1000) % 60);
         const minutes = Math.floor((diff / 1000 / 60) % 60);
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const days = Math.floor((diff / (1000 * 60 * 60 * 24)) % 30);
         const months = Math.floor((diff / (1000 * 60 * 60 * 24 * 30)) % 12);
         const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-
         document.getElementById("years").innerText = years;
         document.getElementById("months").innerText = months;
         document.getElementById("days").innerText = days;
